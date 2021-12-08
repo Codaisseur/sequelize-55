@@ -7,37 +7,37 @@ module.exports = {
       [
         {
           task: "Workout",
-          todoListId: 2,
+          listId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           task: "Do laundry",
-          todoListId: 2,
+          listId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           task: "shopping",
-          todoListId: 3,
+          listId: 3,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           task: "Buy gifts",
-          todoListId: 2,
+          listId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           task: "Get a haircut",
-          todoListId: 2,
+          listId: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           task: "Finish work",
-          todoListId: 1,
+          listId: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

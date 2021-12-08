@@ -6,13 +6,24 @@ module.exports = {
       type: Sequelize.INTEGER,
       references: {
         model: "users",
-        key: "id"
+        key: "id",
       },
       onUpdate: "CASCADE",
-      onDelete: "SET NULL"
+      onDelete: "SET NULL",
+    });
+
+    await queryInterface.addColumn("todoItems", "listId", {
+      type: Sequelize.INTEGER,
+      references: {
+        model: "todoLists",
+        key: "id", //todoListId
+      },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.removeColumn("todoLists", "userId");
+    await queryInterface.removeColumn("todoItems", "listId");
   },
 };

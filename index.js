@@ -4,7 +4,7 @@ const PORT = 4000;
 
 //importing models
 const User = require("./models").user;
-const TodoList = require("./models").todoList
+const TodoList = require("./models").todoList;
 
 // Create server
 const app = express();
@@ -18,7 +18,7 @@ app.get("/users", async (request, response) => {
   try {
     // Somehow get the data from my table
     // .findAll is a model method
-    const users = await User.findAll({include: TodoList}); // gets me all users in the table
+    const users = await User.findAll({ include: TodoList }); // gets me all users in the table
     console.log("got a request to send all users");
     // send the users back
     response.send(users);
@@ -30,16 +30,14 @@ app.get("/users", async (request, response) => {
 //GET SPECIFIC USER
 app.get("/users/:userId", async (req, res) => {
   try {
+    const id = parseInt(req.params.userId);
+    const user = await User.findByPk(id, { include: TodoList });
 
-    const id = parseInt(req.params.userId)
-    const user = await User.findByPk(id, {include: TodoList})
-
-    if (!user){
-      res.status(404).send("User not found")
+    if (!user) {
+      res.status(404).send("User not found");
     } else {
-      res.send(user) 
+      res.send(user);
     }
-
   } catch (e) {
     console.log(e.message);
   }
@@ -49,19 +47,18 @@ app.get("/users/:userId", async (req, res) => {
 //http syntax: http :4000/users name=Karla email=karla@karla.com password=karla phone=12345678
 app.post("/users", async (request, response) => {
   try {
-    const { name, email, password, phone } = request.body
+    const { name, email, password, phone } = request.body;
 
     // if (!name || !email || !password) {
     //   response.send("Missing parameters")
-    // } 
+    // }
 
-    const user = await User.create({name, email, password, phone})
-    response.send(user)
-
+    const user = await User.create({ name, email, password, phone });
+    response.send(user);
   } catch (e) {
-    console.log(e.message)
+    console.log(e.message);
   }
-})
+});
 
 //http syntax: http PATCH :4000/users name=Boo
 app.patch("/users/:id", async (req, res, next) => {
